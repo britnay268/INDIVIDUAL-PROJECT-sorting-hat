@@ -1,3 +1,10 @@
-/* body {
-  background-color: slategrey;
-} */
+body {
+  background-color: tan;
+}
+
+#intro {
+  text-align: center;
+  hr {
+    border: 1px solid black;
+  }
+}
