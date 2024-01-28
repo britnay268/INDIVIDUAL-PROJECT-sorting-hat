@@ -2,9 +2,44 @@ body {
   background-color: tan;
 }
 
-#intro {
+#createCardContainer {
   text-align: center;
+  
   hr {
     border: 1px solid black;
   }
+}
+
+form > div > button {
+  margin-top: 10px;
+}
+
+#filterBtnsConatiner {
+  button {
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+  }
+  
+}
+
+#cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  margin: 10px;
+  border-radius: 1px;
+  border: 0px;
+}
+
+#card-color {
+  background-color: blueviolet;
+  padding: 8px 50px;
+  border-radius: 1px;
 }
