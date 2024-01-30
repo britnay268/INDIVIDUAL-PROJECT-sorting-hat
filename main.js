@@ -26,6 +26,11 @@ const data = [
     color: "green",
   },
 ];
+
+//Array to hold expelled students
+const expelled = [];
+
+
 //Render To DOM function
 const renderToDom = (divID, htmlToDisplay) => {
   //This selects the div ID that will be put in the renderToDom function
@@ -59,8 +64,8 @@ const createCard = () => {
 
         <div class="mb-3">
           <label class="form-label">Student:</label>
-          <input type="email" class="form-control" id="student">
-          <button type="submit" class="btn btn-primary">Sort</button>
+          <input type="text" class="form-control" id="student" required>
+          <button type="submit" class="btn btn-primary" id="sort">Sort</button>
         </div>
 
         </form>
@@ -75,13 +80,13 @@ const createCard = () => {
 
 const filterButtons = () => {
   const domString = `
-  <legend>Filter Students</legend>
+  <legend style ="text-align:center;">Filter Students</legend>
   <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
-  <button type="button" class="btn btn-outline-primary">All</button>
-  <button type="button" class="btn btn-outline-primary">Gryffindor</button>
-  <button type="button" class="btn btn-outline-primary">Hufflepuff</button>
-  <button type="button" class="btn btn-outline-primary">Ravenclaw</button>
-  <button type="button" class="btn btn-outline-primary">Slytherin</button>
+  <button type="button" class="btn btn-outline-primary" id="all">All</button>
+  <button type="button" class="btn btn-outline-primary" id="gryffindor">Gryffindor</button>
+  <button type="button" class="btn btn-outline-primary" id="hufflepuff">Hufflepuff</button>
+  <button type="button" class="btn btn-outline-primary" id="ravenclaw">Ravenclaw</button>
+  <button type="button" class="btn btn-outline-primary" id="slytherin">Slytherin</button>
   </div>  
   `;
 
@@ -91,7 +96,7 @@ const filterButtons = () => {
 const cardsOnDom = (array) => {
   let domString = "";
   
-  for (const item of array) {
+  array.forEach((item) => {
     domString += `
     <div class="card">
       <div class="card-header" id="card-color">
@@ -104,18 +109,113 @@ const cardsOnDom = (array) => {
       </div>
     </div>
     `;
-  }
+  });
+
+  // const colorOfHouse = (e) => {
+  //   if (e.target.id === "gryffindor") {
+  //     document.querySelector("#card-color").style.background = 'green';
+  //   }
+  // }
+  // console.log(colorOfHouse())
   renderToDom("#cardContainer", domString);
 
 };
 
+const expelledStudents = (array) => {
+  let domString = ""
 
+  array.forEach((item) => {
+    domString += `
+    <div class="card2" style="width: 18rem;">
+      <img src="https://qph.cf2.quoracdn.net/main-qimg-565e9b565b0ce8c9fc467d58b23ae254" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">Sadly, ${item.student} went over to the dark side!</p>
+      </div>
+    </div>`
+  });
+      
+  renderToDom("#expelled", domString);
+}
+
+// ############# Event Listeners ############# //
+
+const eventListeners = () => {
+
+  //Filter event listener
+  const filterBtns = document.querySelector("#filterBtnsConatiner");
+  filterBtns.addEventListener('click', (e) => {
+    // console.log(e.target.id)
+
+    if (e.target.id === "all") {
+      cardsOnDom(data);
+    } else if (e.target.id) {
+      const card = data.filter((c) => c.house.toLowerCase() === e.target.id);
+      cardsOnDom(card);
+      console.log(card)
+    }
+  });
+
+  const cards = document.querySelector("#cardContainer");
+  cards.addEventListener('click', (e) => {
+
+    if (e.target.id.includes('expel')) {
+      const [, id] = e.target.id.split("-");
+    
+      const index = data.findIndex((student) => student.id === Number(id))
+
+      // this gets the object of the array
+      const person = data.find((e) => e.id === Number(id));
+
+      //This removes the object clicked
+      data.splice(index, 1);
+
+      //This pushes deleted object to the expelled array
+      expelled.push(person);
+
+      //This shows expelled student
+      expelledStudents(expelled);
+
+      //This shows the remaining cards after the expelled student was removed.
+      cardsOnDom(data);
+      
+    }   
+
+  });
+
+  const formModal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+
+  const submitForm = document.querySelector("form")
+  submitForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    const houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
+
+    const selectedHouse = houses[Math.floor(Math.random() * houses.length)]
+
+    const newStudent = {
+      //Its data length + 1 starts from one vs data.length starts from 0
+      id: data.length + 1,
+      student: document.querySelector("#student").value,
+      house: selectedHouse,
+    }
+
+    data.push(newStudent);
+
+    cardsOnDom(data)
+    filterButtons();
+    
+    formModal.hide()
+    submitForm.reset();
+
+  });
+
+}
 
 //Hold all the functions to executed
 const startApp = () => {
   createCard();
-  filterButtons();
-  cardsOnDom(data);
+  eventListeners();
 };
 
 //Runs all the functions

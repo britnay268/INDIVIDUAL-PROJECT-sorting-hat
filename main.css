@@ -16,7 +16,6 @@ form > div > button {
 
 #filterBtnsConatiner {
   button {
-    margin-top: 20px;
     color: black;
     font-weight: bold;
     border: 1px solid black;
@@ -24,9 +23,28 @@ form > div > button {
   
 }
 
-#cardContainer {
+legend {
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+#containerOfCards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+
+  #cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid black;
+    margin: 10px; */
+  }
+
+  #expelled {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid black;
+    margin: 10px; */
+  }
 }
 
 .card {
@@ -42,4 +60,10 @@ form > div > button {
   background-color: blueviolet;
   padding: 8px 50px;
   border-radius: 1px;
+}
+
+.card2 {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 3px;
 }
