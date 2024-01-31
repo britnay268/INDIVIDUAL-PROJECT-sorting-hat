@@ -74,6 +74,7 @@ legend {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
     margin-top: 10px;
     margin-left: 5px;
     width: 50%;
