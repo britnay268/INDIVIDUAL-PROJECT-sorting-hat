@@ -41,11 +41,11 @@ const renderToDom = (divID, htmlToDisplay) => {
 //Creates the intro of the page
 const buttonFormModal = () => {
   const domString = `
-  <h1>Welcome to Hoggy Hoggy Warts, RELOADED!</h1>
-  <p>Come be apart of the Harry Potter Experience! Lets see what house you would be in if you attended Hogwarts.</p>
+  <h1 style="text-shadow:0px 0px 10px black;">Welcome to Hoggy Hoggy Warts, RELOADED!</h1>
+  <p style="text-shadow:0px 0px 20px black; margin-top:20px; font-size:18px;">Come be apart of the Harry Potter Experience! Lets see what house you would be in if you attended Hogwarts.</p>
   <hr>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Get Started
   </button>
 
@@ -78,7 +78,7 @@ const buttonFormModal = () => {
 
 const filterButtons = () => {
   const domString = `
-  <legend style ="text-align:center;">Filter Students</legend>
+  <legend style ="text-align:center; color:white; text-shadow:0px 0px 15px black;">Filter Students</legend>
   <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
   <button type="button" class="btn btn-outline-primary" id="all">All</button>
   <button type="button" class="btn btn-outline-primary" id="gryffindor">Gryffindor</button>
@@ -92,7 +92,7 @@ const filterButtons = () => {
 };
 
 const studentsOnDom = (array) => {
-  let domString = "";
+  let domString = `<legend style="text-align:center">First Year's</legend>`;
 
   array.map((item) => {
     domString += `
@@ -122,19 +122,17 @@ const studentsOnDom = (array) => {
   });
 
   renderToDom("#cardContainer", domString);
-
-  let domString2 =`<legend>First Years</legend>`
 };
 
 const expelledStudentsOnDom = (array) => {
-  let domString = "";
+  let domString = `<legend style="text-align:center; color:red;">The Voldemort Army😈</legend>`;
 
   array.forEach((item) => {
     domString += `
-    <div class="card2" style="width: 18rem;">
+    <div class="card2" style="width: 15rem;">
       <img src="https://qph.cf2.quoracdn.net/main-qimg-565e9b565b0ce8c9fc467d58b23ae254" class="card-img-top" alt="...">
       <div class="card-body">
-        <p class="card-text" style="font-weight:bold; margin-top:10px;" >Sadly, ${item.student} went over to the dark side!</p>
+        <p class="card-text" style="font-weight:bold; margin-top:10px; margin-bottom:5px; text-shadow:0px 0px 8px black; color:white;">Sadly, ${item.student} went over to the dark side!</p>
       </div>
     </div>`;
   });
@@ -177,12 +175,17 @@ const eventListeners = () => {
       //This shows expelled student
       expelledStudentsOnDom(expelled);
 
+      document.querySelector("#expelled").style.border = '1px solid black';
+      document.querySelector("#expelled").style.backgroundColor = 'black';
+
       //This shows the remaining cards after the expelled student was removed.
       studentsOnDom(data);
     }
 
     // console.log(e.target.id)
   });
+
+  
 
   const formModal = new bootstrap.Modal(
     document.querySelector("#exampleModal")
@@ -210,6 +213,8 @@ const eventListeners = () => {
 
     formModal.hide();
     submitForm.reset();
+
+    cards.style.border = '1px solid #E8E8E8';
   });
 };
 
