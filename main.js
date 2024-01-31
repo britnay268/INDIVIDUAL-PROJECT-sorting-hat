@@ -30,14 +30,12 @@ const data = [
 //Array to hold expelled students
 const expelled = [];
 
-
 //Render To DOM function
 const renderToDom = (divID, htmlToDisplay) => {
   //This selects the div ID that will be put in the renderToDom function
   const selectedID = document.querySelector(divID);
   //This will place the ehtml code inside the specified html element based on the id
   selectedID.innerHTML = htmlToDisplay;
-
 };
 
 //Creates the intro of the page
@@ -74,8 +72,8 @@ const buttonFormModal = () => {
     </div>
   </div>
   `;
-  
-  renderToDom('#createCardContainer', domString);
+
+  renderToDom("#createCardContainer", domString);
 };
 
 const filterButtons = () => {
@@ -90,22 +88,34 @@ const filterButtons = () => {
   </div>  
   `;
 
-  renderToDom('#filterBtnsConatiner', domString);
+  renderToDom("#filterBtnsConatiner", domString);
 };
 
 const studentsOnDom = (array) => {
   let domString = "";
-  
+
   array.map((item) => {
     domString += `
     <div class="card">
-      <div class="card-header" id="card-color">
+      <div class="card-header" id="card-color" style="background-color: ${
+        item.house === "Ravenclaw"
+          ? "darkblue"
+          : item.house === "Hufflepuff"
+          ? "goldenrod"
+          : item.house === "Gryffindor"
+          ? "darkred"
+          : item.house === "Slytherin"
+          ? "green"
+          : " "
+      }">
         
       </div>
       <div class="card-body">
         <h6 id="student">${item.student}</h6>
         <p class="card-text">${item.house}</p>
-        <button type="submit" class="btn btn-danger" id="expel-${item.id}">Expel</button>
+        <button type="submit" class="btn btn-danger" id="expel-${
+          item.id
+        }">Expel</button>
       </div>
     </div>
     `;
@@ -113,31 +123,31 @@ const studentsOnDom = (array) => {
 
   renderToDom("#cardContainer", domString);
 
+  let domString2 =`<legend>First Years</legend>`
 };
 
 const expelledStudentsOnDom = (array) => {
-  let domString = ""
+  let domString = "";
 
   array.forEach((item) => {
     domString += `
     <div class="card2" style="width: 18rem;">
       <img src="https://qph.cf2.quoracdn.net/main-qimg-565e9b565b0ce8c9fc467d58b23ae254" class="card-img-top" alt="...">
       <div class="card-body">
-        <p class="card-text">Sadly, ${item.student} went over to the dark side!</p>
+        <p class="card-text" style="font-weight:bold; margin-top:10px;" >Sadly, ${item.student} went over to the dark side!</p>
       </div>
-    </div>`
+    </div>`;
   });
-      
+
   renderToDom("#expelled", domString);
-}
+};
 
 // ############# Event Listeners ############# //
 
 const eventListeners = () => {
-
   //Filter event listener
   const filterBtns = document.querySelector("#filterBtnsConatiner");
-  filterBtns.addEventListener('click', (e) => {
+  filterBtns.addEventListener("click", (e) => {
     // console.log(e.target.id)
 
     if (e.target.id === "all") {
@@ -149,12 +159,11 @@ const eventListeners = () => {
   });
 
   const cards = document.querySelector("#cardContainer");
-  cards.addEventListener('click', (e) => {
-
-    if (e.target.id.includes('expel')) {
+  cards.addEventListener("click", (e) => {
+    if (e.target.id.includes("expel")) {
       const [, id] = e.target.id.split("-");
-    
-      const index = data.findIndex((student) => student.id === Number(id))
+
+      const index = data.findIndex((student) => student.id === Number(id));
 
       // this gets the object of the array
       const person = data.find((e) => e.id === Number(id));
@@ -170,46 +179,39 @@ const eventListeners = () => {
 
       //This shows the remaining cards after the expelled student was removed.
       studentsOnDom(data);
-      
-    }   
-
-    if (data.house === "Gryffindor") {
-      document.getElementById("card-color").style.backgroundColor = 'green';
     }
 
-    console.log(e.target.id)
-
+    // console.log(e.target.id)
   });
 
-  const formModal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+  const formModal = new bootstrap.Modal(
+    document.querySelector("#exampleModal")
+  );
 
-  const submitForm = document.querySelector("form")
-  submitForm.addEventListener('submit', (e) => {
-
+  const submitForm = document.querySelector("form");
+  submitForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
 
-    const selectedHouse = houses[Math.floor(Math.random() * houses.length)]
+    const selectedHouse = houses[Math.floor(Math.random() * houses.length)];
 
     const newStudent = {
       //Its data length + 1 starts from one vs data.length starts from 0
       id: data.length + 1,
       student: document.querySelector("#student").value,
       house: selectedHouse,
-    }
+    };
 
     data.push(newStudent);
 
-    studentsOnDom(data)
+    studentsOnDom(data);
     filterButtons();
-    
-    formModal.hide()
+
+    formModal.hide();
     submitForm.reset();
-
   });
-
-}
+};
 
 //Hold all the functions to executed
 const startApp = () => {
