@@ -41,7 +41,7 @@ const renderToDom = (divID, htmlToDisplay) => {
 };
 
 //Creates the intro of the page
-const createCard = () => {
+const buttonFormModal = () => {
   const domString = `
   <h1>Welcome to Hoggy Hoggy Warts, RELOADED!</h1>
   <p>Come be apart of the Harry Potter Experience! Lets see what house you would be in if you attended Hogwarts.</p>
@@ -93,10 +93,10 @@ const filterButtons = () => {
   renderToDom('#filterBtnsConatiner', domString);
 };
 
-const cardsOnDom = (array) => {
+const studentsOnDom = (array) => {
   let domString = "";
   
-  array.forEach((item) => {
+  array.map((item) => {
     domString += `
     <div class="card">
       <div class="card-header" id="card-color">
@@ -111,17 +111,11 @@ const cardsOnDom = (array) => {
     `;
   });
 
-  // const colorOfHouse = (e) => {
-  //   if (e.target.id === "gryffindor") {
-  //     document.querySelector("#card-color").style.background = 'green';
-  //   }
-  // }
-  // console.log(colorOfHouse())
   renderToDom("#cardContainer", domString);
 
 };
 
-const expelledStudents = (array) => {
+const expelledStudentsOnDom = (array) => {
   let domString = ""
 
   array.forEach((item) => {
@@ -147,11 +141,10 @@ const eventListeners = () => {
     // console.log(e.target.id)
 
     if (e.target.id === "all") {
-      cardsOnDom(data);
+      studentsOnDom(data);
     } else if (e.target.id) {
       const card = data.filter((c) => c.house.toLowerCase() === e.target.id);
-      cardsOnDom(card);
-      console.log(card)
+      studentsOnDom(card);
     }
   });
 
@@ -173,12 +166,18 @@ const eventListeners = () => {
       expelled.push(person);
 
       //This shows expelled student
-      expelledStudents(expelled);
+      expelledStudentsOnDom(expelled);
 
       //This shows the remaining cards after the expelled student was removed.
-      cardsOnDom(data);
+      studentsOnDom(data);
       
     }   
+
+    if (data.house === "Gryffindor") {
+      document.getElementById("card-color").style.backgroundColor = 'green';
+    }
+
+    console.log(e.target.id)
 
   });
 
@@ -202,7 +201,7 @@ const eventListeners = () => {
 
     data.push(newStudent);
 
-    cardsOnDom(data)
+    studentsOnDom(data)
     filterButtons();
     
     formModal.hide()
@@ -214,7 +213,7 @@ const eventListeners = () => {
 
 //Hold all the functions to executed
 const startApp = () => {
-  createCard();
+  buttonFormModal();
   eventListeners();
 };
 
