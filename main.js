@@ -206,7 +206,11 @@ const eventListeners = () => {
       house: selectedHouse,
     };
 
+    
     data.push(newStudent);
+
+    //Sorts data by student name
+    data.sort((a,b) => a.student.localeCompare(b.student))
 
     studentsOnDom(data);
     filterButtons();
