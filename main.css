@@ -74,6 +74,7 @@ legend {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
     margin-top: 10px;
     margin-left: 5px;
     width: 50%;
@@ -96,11 +97,15 @@ legend {
   border-radius: 1px;
 }
 
-.card2 {
+.voldemort-card {
   margin: 10px;
   border: 3px solid red;
   border-radius: 3px;
-  height: 214px;
+  height: 230px;
+}
+
+#expelled-student {
+  color: red;
 }
 
 #expelled-student {
