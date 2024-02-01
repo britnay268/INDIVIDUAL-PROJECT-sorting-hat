@@ -1,4 +1,4 @@
-# Hoggy Hoggy Warts [![Netlify Status](https://api.netlify.com/api/v1/badges/67a1dae3-b353-49d2-a296-a3bf32fe39ef/deploy-status)](https://app.netlify.com/sites/
+# Hoggy Hoggy Warts [![Netlify Status](https://api.netlify.com/api/v1/badges/67a1dae3-b353-49d2-a296-a3bf32fe39ef/deploy-status)](https://app.netlify.com/sites/)
 
 ## Overview of the project
 This is a project called Sorting Hat where a user can enter their name and be randomly placed in a house in Hogwarts from  Harry Potter. Their name and house will be in a card  in the First Year's section after they press sort and a user can expel other users that have cards in the First Year's section to the Voldemort Army section.
@@ -27,4 +27,4 @@ There were no wireframes or project boards used for this project.
 <img width="1148" alt="Sorting Hat Fullpage" src="project-screnshot/Sorting-Hat-Fullpage.png">
 
 ## Contributors
-- [Britnay Gore](https://github.com/britnay268)
+- Britnay Gore: [https://github.com/britnay268]
