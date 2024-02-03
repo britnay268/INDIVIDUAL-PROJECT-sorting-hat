@@ -3,6 +3,7 @@ body {
   height: 100vh;
   background-image: url("https://i.pinimg.com/736x/f5/27/63/f5276354114b001eabe2bd971f8a8a99.jpg");
   background-size: cover;
+  background-position: top center;
 }
 
 #createCardContainer {
