@@ -129,10 +129,14 @@ const expelledStudentsOnDom = (array) => {
 
   array.forEach((item) => {
     domString += `
-    <div class="card2" style="width: 15rem;">
+    <div class="voldemort-card" style="width: 15rem;">
       <img src="https://qph.cf2.quoracdn.net/main-qimg-565e9b565b0ce8c9fc467d58b23ae254" class="card-img-top" alt="...">
       <div class="card-body">
-        <p class="card-text" style="font-weight:bold; margin-top:10px; margin-bottom:5px; text-shadow:0px 0px 8px black; color:white;">Sadly, ${item.student} went over to the dark side!</p>
+
+        <p class="card-text" style="font-weight:bold; margin-top:10px; margin-bottom:5px; text-shadow:0px 0px 8px black; color:white;">Sadly, <span id="expelled-student">${item.student}</span> went over to the dark side!</p>
+
+        <p class="card-text" style="font-weight:bold; margin-top:10px; margin-bottom:5px; color:white; text-align:center;">Welcome to the dark side <span id="expelled-student">${item.student}</span></p>
+
       </div>
     </div>`;
   });
@@ -207,6 +211,9 @@ const eventListeners = () => {
     };
 
     data.push(newStudent);
+
+    //Sorts data by student name
+    data.sort((a,b) => a.student.localeCompare(b.student))
 
     studentsOnDom(data);
     filterButtons();
