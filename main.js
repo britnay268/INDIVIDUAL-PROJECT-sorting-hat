@@ -79,12 +79,12 @@ const buttonFormModal = () => {
 const filterButtons = () => {
   const domString = `
   <legend style ="text-align:center; color:white; text-shadow:0px 0px 15px black;">Filter Students</legend>
-  <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
-  <button type="button" class="btn btn-outline-primary" id="all">All</button>
-  <button type="button" class="btn btn-outline-primary" id="gryffindor">Gryffindor</button>
-  <button type="button" class="btn btn-outline-primary" id="hufflepuff">Hufflepuff</button>
-  <button type="button" class="btn btn-outline-primary" id="ravenclaw">Ravenclaw</button>
-  <button type="button" class="btn btn-outline-primary" id="slytherin">Slytherin</button>
+  <div class="btn-group d-flex wrapper" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary" id="all">All</button>
+    <button type="button" class="btn btn-outline-primary" id="gryffindor">Gryffindor</button>
+    <button type="button" class="btn btn-outline-primary" id="hufflepuff">Hufflepuff</button>
+    <button type="button" class="btn btn-outline-primary" id="ravenclaw">Ravenclaw</button>
+    <button type="button" class="btn btn-outline-primary" id="slytherin">Slytherin</button>
   </div>  
   `;
 
