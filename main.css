@@ -1,9 +1,9 @@
-body {
+.container-fluid {
   /* background-color: tan; */
-  height: 100vh;
   background-image: url("https://i.pinimg.com/736x/f5/27/63/f5276354114b001eabe2bd971f8a8a99.jpg");
   background-size: cover;
   background-position: top center;
+  background-repeat: no-repeat;
 }
 
 #createCardContainer {
@@ -24,6 +24,7 @@ form > div > button {
 }
 
 #filterBtnsConatiner {
+
   button {
     color: white;
     font-weight: bold;
@@ -46,8 +47,20 @@ form > div > button {
     background-color: green;
   }
   
-  
 }
+
+.d-flex {
+  flex-wrap: wrap;
+}
+/* @media (min-width: 300px) {
+  .wrapper {
+    max-width: fit-content;
+  }
+} */
+
+/* .wrapper {
+  width: 100vw;
+} */
 
 legend {
   font-weight: bold;
@@ -66,7 +79,7 @@ legend {
     align-content: flex-start;
     margin-top: 10px;
     margin-right: 5px;
-    width: 50%;
+    width: 50vw;
     background-color: #E8E8E8	;
   }
 
@@ -77,18 +90,20 @@ legend {
     align-content: flex-start;
     margin-top: 10px;
     margin-left: 5px;
-    width: 50%;
+    width: 50vw;
+    overflow-x: auto;
   }
 }
 
 .card {
   display: flex;
   flex-direction: row;
-  width: 250px;
+  width: 100vw;
   height: 137px;
   margin: 10px;
   border-radius: 1px;
   border: 0px;
+  overflow: overlay;
 }
 
 #card-color {
